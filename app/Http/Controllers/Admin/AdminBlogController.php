@@ -41,11 +41,8 @@ class AdminBlogController extends Controller
     {
         $validated = $request->validated();
         $validated['iamge'] = $request->file('image')->store('blogs','public');
+        //Blogクラスのfillableにimageを追加。
         Blog::create($validated);
-        // $savedImagePath = $request->file('image')->store('blogs','public');
-        // $blog = new Blog($request->validated());
-        // $blog->image = $savedImagePath;
-        // $blog->save();
 
         return to_route('admin.blogs.index')->with('success','ブログを投稿しました');
     }
